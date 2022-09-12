@@ -1,0 +1,78 @@
+<h1>Exercise Update View</h1>
+
+<!-- remember to update configuration for routing in exercise.js -->
+
+<div class="row">
+	<div class="col-sm-7">
+		<div class="card bg-light">
+			<div class="card-header text-center">
+				<h3>Update Exercise</h3>
+				<h5 class="text-success text-center" ng-bind="updateStatus"></h5>
+			</div>
+
+			<div class="card-body">
+				<form name="updateForm">
+					<!-- A good way to handle errors when they come in -->
+					<!-- what follows are different options for updating the various properties of Movie objects -->
+					<div class="form-group">
+						<label for="title" class="font-weight-bold">Title:</label> 
+						<input ng-model="exercise.title" required ng-minlength="2" name="title" type="text"
+							 class="form-control" id="title">
+						<!-- validation for title below. Danger makes it red.  True makes it always show up -->
+						<span class="text-danger" ng-if="updateForm.title.$valid"> Required and must
+							be at least 2 characters
+						</span>
+
+					</div>
+					<div class="form-group">
+						<label for="bodyPart" class="font-weight-bold">Body Part:</label> <select
+							ng-options="value for value in bodyParts" ng-model="exercise.bodyPart"
+							class="form-control" id="bodyPart">
+							<!-- helps you create options in a drop down list -->
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exerciseType" class="font-weight-bold">Exercise Type:</label> <select
+							ng-options="value for value in exerciseTypes" ng-model="exercise.exerciseType"
+							class="form-control" id="exerciseType">
+							<!-- helps you create options in a drop down list -->
+						</select>
+					</div>
+					<div>
+						<span class="font-weight-bold">Exercise Id:</span> <span
+							ng-bind="exercise.exerciseId" id="id"></span>
+					</div>
+					<div>
+						<span class="font-weight-bold">Added Date:</span> <span
+							ng-bind="exercise.addedDateTime | date: 'medium'" id="addedDate"></span>
+					</div>
+					<div>
+						<span class="font-weight-bold">Update Date:</span> <span
+							ng-bind="exercise.updateDateTime | date: 'medium'" id="updateDate"></span>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer text-center">
+				<button type="button" class="btn btn-success" ng-disabled="updateForm.$invalid || disableUpdate"
+				 ng-click="updateExercise()">
+				 Update
+				 </button> 
+				<!-- extra logic makes button unclickable if there's any errors -->
+				
+				<button type="button" class="btn btn-danger" 
+				ng-disabled="disableExercise" 
+				ng-click="deleteExercise()">
+				Delete</button>
+				
+				<button type="button" class="btn btn-info"
+				ng-click="goToSearchView()">Cancel</button>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="pt-5">
+			<img class="img-fluid rounded-circle" src="./images/movie/movie_splash.jpg">
+			<!--  will cause a 404 until you replace with dumbbell image -->
+		</div>
+	</div>
+</div>

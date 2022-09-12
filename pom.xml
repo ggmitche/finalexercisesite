@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.aca</groupId>
-    <artifactId>finalexercisesite</artifactId>
+    <artifactId>fitnessapp</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
-    <name>finalexercisesite</name>
+    <name>fitnessapp</name>
 
     <build>
-        <finalName>finalexercisesite</finalName>
+        <finalName>fitnessapp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

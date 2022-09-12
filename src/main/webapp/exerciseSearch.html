@@ -1,0 +1,65 @@
+<h1>Search View</h1>
+
+<div class="card mt-3">
+	<div class="card-header text-white" style="background-color:#ff1a1a ">
+		<h4>Exercise Search View</h4>
+		<button class="btn btn-success" ng-click="getAllExercises()">Refresh Exercises</button>
+		<span class="float-right">
+		<span class="font-weight-bold">Search: <input type="text" maxlength="15" ng-model="searchValue">		
+		</span></span>
+	</div>
+	<div class="card-body">
+		<table class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th ng-click="orderByColumn('exerciseId')"><button class="btn btn-success">ExerciseId</button></th>
+					<th ng-click="orderByColumn('title')"><button class="btn btn-success">Title</button></th>
+					
+					<th ng-click="orderByColumn('bodyPartId')"><button class="btn btn-success">Body Part</button></th>
+					<th ng-click="orderByColumn('exerciseTypeId')"><button class="btn btn-success">Type</button></th>
+					
+					<th ng-click="orderByColumn('addedDateTime')"><button class="btn btn-success">Create Date</button></th>			
+				</tr>
+			</thead>
+			<tbody> <!--  ng-show="!showSpinner" -->
+				<tr ng-repeat="exercise in exercises | orderBy:orderByValue:reverse | filter:searchValue " 
+				 ng-click="goToUpdateView(exercise.exerciseId)">
+					<td>{{exercise.exerciseId}}</td>
+					<td>{{exercise.title}}</td>
+					<td>{{exercise.bodyPart}}</td>
+					<td>{{exercise.exerciseType}}</td>
+					<td>{{exercise.addedDateTime | date: 'medium'}}</td>
+	<!--  	add later		<td>{{exercise.updateDateTime | date: 'medium'}}</td>  -->
+			
+				</tr>
+				
+				<!-- hard coding works.  Move to actual data implementation 	
+				<tr>
+					<td>1</td>
+					<td>HC Push Up</td>					
+					<td>Chest</td>
+					<td>Calisthenics</td>
+					<td>2019-11-12T19:03:35</td>					
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>HC Pull Up</td>
+					<td>Back</td>
+					<td>Calisthenics</td>
+					<td>2019-11-12T19:03:35</td>					
+				</tr> -->	
+			</tbody>		
+		</table>	
+		</div>
+		</div>
+	<!--  spinner.  Implement AFTER pulling exercise data	<div ng-show="showSpinner" class="text-center pt-4">
+			<div class="spinner-border" style="width:3rem; height: 3rem;">
+	</div>
+	<br>
+	<p>Loading search results...</p>
+	<div class="card-footer bg-info">
+		Please select an movie to change or delete
+	</div>
+</div> -->
+
+<!--filter:searchValue makes the search results change whenever you input a character.  The filter was refactored out, but you CAN filter and orderby in one-->
